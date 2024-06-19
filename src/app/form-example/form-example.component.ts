@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Employee } from '../models/employee';
 
 
 @Component({
@@ -6,13 +7,15 @@ import { Component } from '@angular/core';
   templateUrl: './form-example.component.html',
   styleUrl: './form-example.component.css'
 })
-export class FormExampleComponent{
+export class FormExampleComponent implements OnInit{
   genders : String[] = ['Male','Female','Other'];
-  email?: string;
-  age: number = 0;
-  acceptTerms: boolean= false;
-  gender?: String;
-  name?: String; 
-  dateOfForm?: Date;
+  employee: Employee = new Employee();
+
+  ngOnInit():void {
+
+    console.log("name =: ",this.employee.name);
+    console.log("Email:= ",this.employee.email);
+
+  }
 
 }
