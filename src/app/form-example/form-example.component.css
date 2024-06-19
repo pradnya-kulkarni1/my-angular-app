@@ -1,0 +1,20 @@
+.form-group{
+    width:30%;
+    margin: 50px auto;
+    background: rgba(247, 234, 151, 0.75);
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(138, 154, 245, 0.598);
+    border-radius:10px;
+}
+td {
+    border: 1px solid #551c02;
+}
+.alert-danger{
+    background-color:rgb(210, 185, 234);
+}
+.alert{
+    color:black;
+}
+.h1{
+text-decoration-color:blue;
+}
