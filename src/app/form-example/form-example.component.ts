@@ -10,6 +10,11 @@ import { Employee } from '../models/employee';
 export class FormExampleComponent implements OnInit{
   genders : String[] = ['Male','Female','Other'];
   employee: Employee = new Employee();
+  today:string;
+
+  constructor(){
+    this.today = new Date().toISOString().split('T')[0];
+  }
 
   ngOnInit():void {
 

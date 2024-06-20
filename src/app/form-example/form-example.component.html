@@ -1,107 +1,104 @@
-<div style="text-align: center;">
-    <h1> Form Example</h1>
-  </div>
-<div>
-<form #form="ngForm">
-    
 
-    <div class="form-group">
-        <tr>
-            <td><label>Name</label></td>
-            <td>
-              <input 
-                required 
-                #name="ngModel"
-                name="name"
-                [(ngModel)]="employee.name"
-                type="text" 
-                class="form-control" 
-                [ngModelOptions]="{standalone: true}"
-                placeholder="Enter Name">
-              <div *ngIf="name.invalid && (name.dirty || name.touched)" class="naming naming-info">
-                Name is Invalid
-              </div>
-            </td>
-        </tr>
-        <tr>
-        <td><label>Email address</label></td>
-        <td>
-            <input 
-                required 
-                email 
-                #nameEmail="ngModel" 
-                [(ngModel)] ="employee.email" 
-                [ngModelOptions]="{standalone: true}" 
-                class="form-control"  
-                aria-describedby="emailHelp"
-                 placeholder="Enter email">
-                <small id="emailHelp" class="form-text text-muted">We'll never share your email.</small>
-                <div *ngIf ="nameEmail.errors && nameEmail.errors?.['required'] && nameEmail.touched" class="alert alert-danger">
-                Email is required
-                </div>
-                <div *ngIf ="nameEmail.errors && nameEmail.errors?.['email'] && nameEmail.touched" class="alert alert-danger">
-                 Email is Invalid
-                </div>
-        </td>
-        </tr>
-        <tr><td><label>Age</label></td>
-        <td> 
-            <input 
-            required [(ngModel)]="employee.age" 
-            #age="ngModel"
-            [ngModelOptions]="{standalone: true}" 
-            class="form-control" id="age" 
-            placeholder="Enter Age" 
-            type = "number" min="1">
-            <div *ngIf="age.invalid && (age.dirty || age.touched)" class="naming naming-info">
-                Age is Invalid
-              </div>
-        </td>
-        </tr>
-        <tr>
-        <td>Date:</td>
-        <td>
-            <input [(ngModel)]="employee.dateOfForm" 
-            class="form-control" 
-            type="date"
-            #dateCtrl="ngModel">
-            <div *ngIf="dateCtrl.invalid && (dateCtrl.dirty || dateCtrl.touched)" class="naming naming-info">
-                Date is Invalid
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <label>Gender</label>
-        </td>
-        <td>
-            <select required input [(ngModel)]="employee.gender" #genderCtrl="ngModel" [ngModelOptions]="{standalone: true}" class="form-control">
-            <option *ngFor ="let g of genders">
-                {{g}}
-            </option>
-        </select>
-        <div *ngIf="genderCtrl.invalid && (genderCtrl.dirty || genderCtrl.touched)" class="naming naming-info">
-            <div *ngIf="genderCtrl.errors?.['required']">Gender is required.</div>
-        </div>
-        </td>
-    </tr>
-    <tr>
-    <td><label>Accept Terms</label></td>
-    <td>
-        <input 
-        required 
-        [(ngModel)]="employee.acceptTerms" 
-        [ngModelOptions]="{standalone: true}" 
-        type = "checkbox" 
-        #checking="ngModel"
-        class="form-check-input" 
-        id="AcceptTerms">
-        <div *ngIf="checking.invalid && (checking.dirty || checking.touched)" class="naming naming-info">
-            Please accept the Terms
-        </div>
-    </td>
-    </tr>
+<div>
+  <h1> Form Example</h1>
 </div>
-    
+<div>
+<form #form="ngForm" class = 'card p-3 bg-light'>
+  
+
+  <div class="form-group">
+      <tr>
+          <td><label>Name</label></td>
+          <td>
+            <input matNativeControl
+              required 
+              #name="ngModel"
+              name="name"
+              [(ngModel)]="employee.name"
+              type="text" 
+              class="form-control" 
+              [ngModelOptions]="{standalone: true}"
+              placeholder="Enter Name">
+            <div *ngIf="name.invalid && (name.dirty || name.touched)" class="naming naming-info">
+              Name is Invalid
+            </div>
+          </td>
+      </tr>
+      <tr>
+      <td><label>Email address</label></td>
+      <td>
+          <input 
+              required 
+              email 
+              #nameEmail="ngModel" 
+              [(ngModel)] ="employee.email" 
+              [ngModelOptions]="{standalone: true}" 
+              class="form-control" 
+               placeholder="Enter email">
+              <div *ngIf ="nameEmail.errors && nameEmail.errors?.['required'] && nameEmail.touched" class="alert alert-danger">
+              Email is required
+              </div>
+              <div *ngIf ="nameEmail.errors && nameEmail.errors?.['email'] && nameEmail.touched" class="alert alert-danger">
+               Email is Invalid
+              </div>
+      </td>
+      </tr>
+      <tr><td><label>Age</label></td>
+      <td> 
+          <input 
+          required [(ngModel)]="employee.age" 
+          #age="ngModel"
+          [ngModelOptions]="{standalone: true}" 
+          class="form-control" id="age" 
+          placeholder="Enter Age" 
+          type = "number" min="1">
+          <div *ngIf="age.invalid && (age.dirty || age.touched)" class="naming naming-info">
+              Age is Invalid
+            </div>
+      </td>
+      </tr>
+      <tr>
+      <td>Date:</td>
+      <td>
+          <input [(ngModel)]="employee.dateOfForm" 
+          class="form-control" 
+          type="date"
+          [min]="today"
+          #dateCtrl="ngModel">
+          <div *ngIf="dateCtrl.invalid && (dateCtrl.dirty || dateCtrl.touched)" class="naming naming-info">
+              Date is Invalid
+          </div>
+      </td>
+  </tr>
+  <tr><td>Gender: </td>
+      <td>
+        <label *ngFor ="let g of genders">
+          <input [(ngModel)]="employee.gender"[value]="g" required #genderCtrl="ngModel" [ngModelOptions]="{standalone: true}" type ="radio" class="form-check-input">
+          {{g}}
+                        
+      <div *ngIf="genderCtrl.invalid && (genderCtrl.dirty || genderCtrl.touched)" class="naming naming-info">
+          <div *ngIf="genderCtrl.errors?.['required']">Gender is required.</div>
+      </div>
+      </label>
+      </td>
+  </tr>
+  <tr>
+  <td><label>Accept Terms</label></td>
+  <td>
+      <input 
+      required 
+      [(ngModel)]="employee.acceptTerms" 
+      [ngModelOptions]="{standalone: true}" 
+      type = "checkbox" 
+      #checking="ngModel"
+      class="form-check-input" 
+      id="AcceptTerms">
+      <div *ngIf="checking.invalid && (checking.dirty || checking.touched)" class="naming naming-info">
+          Please accept the Terms
+      </div>
+  </td>
+  </tr>
+</div>
+  
 </form>
 </div>
